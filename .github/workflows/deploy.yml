@@ -26,7 +26,8 @@ jobs:
           java-version: '17'
 
       - name: Build with Gradle
-        run: ./gradlew build
+        #run: ./gradlew build
+        run: ./gradlew bootJar
 
       - name: Upload build files to EC2
         uses: appleboy/scp-action@v0.1.6
