@@ -29,16 +29,6 @@ jobs:
         #run: ./gradlew build
         run: ./gradlew bootJar
 
-      - name: Upload build files to EC2
-        uses: appleboy/scp-action@v0.1.6
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          port: 22
-          source: "build/libs/AuctionFlow-backend-0.0.1-SNAPSHOT.jar"
-          target: "/home/ubuntu/spring-boot-app/"
-
       - name: Check build files
         run: |
           ls -l build/libs/
@@ -48,6 +38,19 @@ jobs:
             echo "Build file does not exist."
             exit 1
           fi
+
+      - name: Upload build files to EC2
+        uses: appleboy/scp-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          port: 22
+          source: "build/libs/AuctionFlow-backend-0.0.1-SNAPSHOT.jar"
+          #target: "/home/ubuntu/spring-boot-app/"
+          target: "spring-boot-app/"
+
+
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.6
