@@ -3,8 +3,8 @@ name: Deploy to EC2
 on:
   push:
     branches:
-#      - develop
-      - ci/cd
+      - develop
+#      - ci/cd
 
 jobs:
   build:
@@ -26,7 +26,6 @@ jobs:
           java-version: '17'
 
       - name: Build with Gradle
-        #run: ./gradlew build
         run: ./gradlew bootJar
 
       - name: Check build files
@@ -47,12 +46,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           port: 22
           source: "build/libs/AuctionFlow-backend-0.0.1-SNAPSHOT.jar"
-          #target: "/home/ubuntu/spring-boot-app/"
           target: "spring-boot-app/"
-
-#      - name: Set execute permission on deploy.sh
-#        run: chmod +x /home/ubuntu/deploy.sh
-#        # 이 단계는 EC2 인스턴스에서 실행되므로 적절히 SSH 액션을 사용하여 설정해야 함
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.6
