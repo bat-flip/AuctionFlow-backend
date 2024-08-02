@@ -48,7 +48,7 @@ jobs:
           port: 22
           source: "build/libs/AuctionFlow-backend-0.0.1-SNAPSHOT.jar"
           #target: "/home/ubuntu/spring-boot-app/"
-          target: "spring-boot-app/build/libs"
+          target: "spring-boot-app/"
 
 #      - name: Set execute permission on deploy.sh
 #        run: chmod +x /home/ubuntu/deploy.sh
