@@ -19,7 +19,7 @@ public class OAuth2Controller {
     @GetMapping("/loginSuccess")
     public Map<String, Object> loginSuccess(@AuthenticationPrincipal OAuth2User oauth2User) {
         return Map.of(
-                "name", oauth2User.getAttribute("nickname"),
+                "nickName", oauth2User.getAttribute("nickname"),
                 "email", oauth2User.getAttribute("email")
         );
     }
